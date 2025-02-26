@@ -8,3 +8,6 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
+include 'src:main:command'
+findProject(':src:main:command')?.name = 'command'
+
