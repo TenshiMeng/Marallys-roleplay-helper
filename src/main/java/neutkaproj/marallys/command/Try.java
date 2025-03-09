@@ -1,6 +1,5 @@
 package neutkaproj.marallys.command;
 
-import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.server.command.CommandManager;
@@ -8,30 +7,23 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import net.minecraft.util.Formatting;
 import java.util.Collection;
 import java.util.Random;
 
-public class trycommand {
+public class Try {
     private static final Random RANDOM = new Random();
     public static void tryCommand() {
         ////БЛОК КОМАНДЫ /TRY
         //Создаем определение стиля для сообщений
-        Style msgStyle = Style.EMPTY.withColor(0xFFD700);
+        Style msgStyle = Style.EMPTY.withColor(Formatting.GOLD);
         //Создаем цветные статусы
         //Блок - успешно
         String successMessageString = "Успешно!";
         String failureMessageString = "Неуспешно...";
-        Style successMessage = Style.EMPTY.withColor(0x00FF00).withBold(true);
+        Style successMessage = Style.EMPTY.withColor(Formatting.GREEN).withBold(true);
         //Блок - не успешно
-        Style failureMessage = Style.EMPTY.withColor(0xFF0000).withBold(true);
-
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            trycommand.register(dispatcher);
-            // Здесь можно зарегистрировать другие команды
-        });
+        Style failureMessage = Style.EMPTY.withColor(Formatting.RED).withBold(true);
 
         // Регистрация базовой команды try
         CommandRegistrationCallback.EVENT.register((dispatcher_try, registryAccess_try, environment_try) -> {
@@ -77,10 +69,6 @@ public class trycommand {
                             })
                     ));
         });
-    }
-
-    private static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-
     }
 }
 
